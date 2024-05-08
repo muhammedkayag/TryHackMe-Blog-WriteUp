@@ -97,7 +97,7 @@ Nmap done: 1 IP address (1 host up) scanned in 43.92 seconds
 
 
 
-then we see in results only two ports are open. After some research we find out there is no vulnerablity for the services with this verisons. So we continue enumaration on port 80 with gobuster:
+then we see in results only two ports are open. After some research we find out there is no vulnerablity for the services with this versions. So we continue enumaration on port 80 with gobuster:
 
 
 
