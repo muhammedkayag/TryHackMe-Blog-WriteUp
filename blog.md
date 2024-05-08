@@ -4,7 +4,7 @@
 
 [Link to room on TryHackMe.com](https://tryhackme.com/room/blog)
 
-Welcome to my TryHacMe-Blog-WriteUp! first we add machines ip adress on our /etc/hosts file as blog.thm: 
+Welcome to my TryHackMe-Blog-WriteUp! first we add machines ip adress on our /etc/hosts file as blog.thm: 
 
 
 
