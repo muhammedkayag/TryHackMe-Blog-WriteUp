@@ -376,9 +376,41 @@ checker
 root@blog:/home/bjoel# whoami
 whoami
 root
-root@blog:/home/bjoel#
+root@blog:/home/bjoel#cat /root/root.txt  
+cat /root/root.txt
+9a0b2b618bef9bfa7ac28c1353d9f318
+
 ```
 
 
 
-And done. We are root. Thanks for reading!
+And done. We are root and we get our root flag. For to find where is user.txt we can use this command:
+
+
+
+```
+find / -name "user.txt" 2>/dev/null
+```
+
+
+
+Then we see same file name exists in two different locations. In first one we couldn't find something. Then when we try second file we get our user flag:
+
+
+
+```
+root@blog:/home/bjoel# find / -name "user.txt" 2>/dev/null
+find / -name "user.txt" 2>/dev/null
+/home/bjoel/user.txt
+/media/usb/user.txt
+root@blog:/home/bjoel# cat /media/usb/user.txt
+cat /media/usb/user.txt
+c8421899aae571f7af486492b71a8ab7
+```
+
+
+
+And done we got our last flag. Thanks for reading!
+
+
+
