@@ -1,4 +1,4 @@
-![](pics/b1.png)
+![](pics/b2.png)
 
 
 
