@@ -58,7 +58,9 @@ PORT   STATE SERVICE REASON
 Read data files from: /usr/bin/../share/nmap
 Nmap done: 1 IP address (1 host up) scanned in 0.87 seconds
            Raw packets sent: 6 (240B) | Rcvd: 3 (128B)
+```
 
+```
 ┌─[root@parrot]─[/home/parrot]
 └──╼ #nmap -sC -sV -A -Pn blog.thm -p 22,80
 Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-05-07 17:38 +03
